@@ -42,4 +42,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"  />
 
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:background="#DEDEDE"
+        android:text="Here to put a lot of text."
+        android:textSize="15sp"
+        android:visibility="gone"
+        android:scrollbars = "vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.70" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

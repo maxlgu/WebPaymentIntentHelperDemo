@@ -1,8 +1,12 @@
 package com.maxlg.intenthelperdemo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,14 +24,18 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private static final int PAYMENT_INTENT_REQUEST_CODE = 123;
+    private TextView mDescriptionView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener((view)->{
+        mDescriptionView = findViewById(R.id.description);
+        mDescriptionView.setMovementMethod(new ScrollingMovementMethod());
+
+        Button payButton = findViewById(R.id.button);
+        payButton.setOnClickListener((view)->{
             Intent intent = createIntent();
             startActivityForResult(intent, PAYMENT_INTENT_REQUEST_CODE);
         });
@@ -40,9 +48,14 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == PAYMENT_INTENT_REQUEST_CODE) {
             WebPaymentIntentHelper.parsePaymentResponse(resultCode, data, (errorString)->{
                 android.util.Log.d("INTENT_HELPER", "errorStrinng: " + errorString);
+                mDescriptionView.setText(errorString);
+                mDescriptionView.setVisibility(View.VISIBLE);
+                mDescriptionView.setTextColor(Color.RED);
             }, (methodName, details)->{
-                android.util.Log.d("INTENT_HELPER", "methodName: " + methodName);
-                android.util.Log.d("INTENT_HELPER", "details: " + details);
+                String description = "methodName: " + methodName + ", details: "+details;
+                mDescriptionView.setText(description);
+                mDescriptionView.setVisibility(View.VISIBLE);
+                mDescriptionView.setTextColor(Color.BLACK);
             });
         }
     }
