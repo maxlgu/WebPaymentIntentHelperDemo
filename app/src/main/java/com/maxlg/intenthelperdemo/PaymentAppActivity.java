@@ -22,9 +22,18 @@ public class PaymentAppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_app);
+        Intent intent = getIntent();
+
         TextView descriptionView = findViewById(R.id.description);
         descriptionView.setMovementMethod(new ScrollingMovementMethod());
-        descriptionView.setText(parseIntentExtras());
+        descriptionView.setText(parseIntentExtras(intent));
+
+        String merchantName = intent.getStringExtra("merchantName");
+        TextView merchantView = findViewById(R.id.merchant);
+        merchantView.setText("merchant: " + merchantName);
+        String stringifiedTotal = intent.getStringExtra("total");
+        TextView totalView = findViewById(R.id.total);
+        totalView.setText("total: " +stringifiedTotal);
 
         Button payButton = findViewById(R.id.pay_button);
         payButton.setOnClickListener((v)->{
@@ -43,13 +52,12 @@ public class PaymentAppActivity extends AppCompatActivity {
         Bundle result = new Bundle();
         result.putString("methodName", "maxPay");
         Long timeStamp = System.currentTimeMillis();
-        result.putString("details", "{\"status\":\"success\",\"amount\":50,\"currency\":\"USD\",\"timestamp\":"+timeStamp.toString()+"}");
+        result.putString("details", "{\"status\":\"success\",\"amount\":50,\"currency\":\"CAD\",\"timestamp\":"+timeStamp.toString()+"}");
         resultIntent.putExtras(result);
         return resultIntent;
     }
 
-    private String parseIntentExtras() {
-        Intent intent = getIntent();
+    private String parseIntentExtras(Intent intent) {
         Bundle bundle = intent.getExtras();
         JSONObject json = new JSONObject();
         String description;

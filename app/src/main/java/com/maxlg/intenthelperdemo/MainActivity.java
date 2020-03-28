@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         byte[][] certificateChain = new byte[][]{{0}};
 
         return WebPaymentIntentHelper.createPayIntent("com.maxlg.intenthelperdemo", "com.maxlg.intenthelperdemo.PaymentAppActivity",
-                "payment.request.id", "merchant.name", "maxlgu.github.io",
+                "pay_request_id_1411", "Linda's Bakery", "maxlgu.github.io",
                 "maxlgu.github.io", certificateChain, methodDataMap, total,
                 displayItems, modifiers);
     }
