@@ -9,10 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name="com.maxlg.maxpay.MaxPayIsReadyToPayService"
-            android:exported="false"></service>
-
         <activity android:name="com.maxlg.maxpay.MaxPayActivity">
             <intent-filter>
                 <action android:name="org.chromium.intent.action.PAY" />
