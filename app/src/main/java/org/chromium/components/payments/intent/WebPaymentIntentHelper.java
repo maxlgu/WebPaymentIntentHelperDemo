@@ -179,6 +179,9 @@ public class WebPaymentIntentHelper {
         checkStringNotEmpty(serviceName, "serviceName");
         checkStringNotEmpty(packageName, "packageName");
         isReadyToPayIntent.setClassName(packageName, serviceName);
+        // CHANGE_NOTE: should be a bug.
+        isReadyToPayIntent.setPackage(packageName);
+        isReadyToPayIntent.setAction("org.chromium.intent.action.IS_READY_TO_PAY");
 
         checkStringNotEmpty(schemelessOrigin, "schemelessOrigin");
         checkStringNotEmpty(schemelessIframeOrigin, "schemelessIframeOrigin");

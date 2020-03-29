@@ -23,7 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String MAX_PAY_PACKAGE = "com.maxlg.maxpay";
+    // TODO: correct the package name after moving maxpay into another package.
+    private static final String MAX_PAY_PACKAGE = "com.maxlg.fakechrome";
 
     private static final int PAYMENT_INTENT_REQUEST_CODE = 123;
     private TextView mDescriptionView;

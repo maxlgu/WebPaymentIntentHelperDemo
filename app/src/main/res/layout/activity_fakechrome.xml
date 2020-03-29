@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:clickable="false"
         android:text="Pay with MaxPay"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
