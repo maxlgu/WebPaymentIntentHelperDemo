@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.chromium.components.payments.intent.IsReadyToPayServiceHelper;
 import org.chromium.components.payments.intent.WebPaymentIntentHelper;
 import org.chromium.components.payments.intent.WebPaymentIntentHelperType.PaymentCurrencyAmount;
 import org.chromium.components.payments.intent.WebPaymentIntentHelperType.PaymentDetailsModifier;
@@ -22,9 +23,11 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String MAX_PAY_PACKAGE = "com.maxlg.maxpay";
 
     private static final int PAYMENT_INTENT_REQUEST_CODE = 123;
     private TextView mDescriptionView;
+    private Button mPayButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +35,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fakechrome);
 
         mDescriptionView = findViewById(R.id.description);
+        mPayButton = findViewById(R.id.button);
+
         mDescriptionView.setMovementMethod(new ScrollingMovementMethod());
 
-        Button payButton = findViewById(R.id.button);
-        payButton.setOnClickListener((view)->{
+        new IsReadyToPayServiceHelper(this,
+                createIsReadyToPayIntent(), new IsReadyToPayServiceHelper.ResultHandler() {
+            @Override
+            public void onIsReadyToPayServiceResponse(boolean isReadyToPay) {
+                mPayButton.setEnabled(isReadyToPay);
+                mDescriptionView.setText("Max pay is " + (isReadyToPay?"ready":"unready") + " to pay.");
+                mDescriptionView.setTextColor(isReadyToPay?Color.BLACK:Color.RED);
+            }
+
+            @Override
+            public void onIsReadyToPayServiceError() {
+                mPayButton.setEnabled(false);
+                mDescriptionView.setText("MaxPay's IsReadyToPay service has an error.");
+                mDescriptionView.setTextColor(Color.RED);
+            }
+        });
+
+        mPayButton.setOnClickListener((view)->{
             Intent intent = createIntent();
             startActivityForResult(intent, PAYMENT_INTENT_REQUEST_CODE);
         });
@@ -47,17 +68,26 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == PAYMENT_INTENT_REQUEST_CODE) {
             WebPaymentIntentHelper.parsePaymentResponse(resultCode, data, (errorString)->{
-                android.util.Log.d("INTENT_HELPER", "errorStrinng: " + errorString);
                 mDescriptionView.setText(errorString);
-                mDescriptionView.setVisibility(View.VISIBLE);
                 mDescriptionView.setTextColor(Color.RED);
             }, (methodName, details)->{
                 String description = "methodName: " + methodName + ", details: "+details;
                 mDescriptionView.setText(description);
-                mDescriptionView.setVisibility(View.VISIBLE);
                 mDescriptionView.setTextColor(Color.BLACK);
             });
         }
+    }
+
+    private Intent createIsReadyToPayIntent() {
+        Map<String, PaymentMethodData> methodDataMap = new HashMap<>();
+        PaymentMethodData maxPayMethodData = new PaymentMethodData("maxPayMethod", "{}");
+        methodDataMap.put("maxPay", maxPayMethodData);
+
+        byte[][] certificateChain = new byte[][]{{0}};
+
+        return WebPaymentIntentHelper.createIsReadyToPayIntent(MAX_PAY_PACKAGE, "com.maxlg.maxpay.MaxPayIsReadyToPayService",
+                "maxlgu.github.io",
+                "maxlgu.github.io", certificateChain, methodDataMap);
     }
 
     private Intent createIntent() {
@@ -76,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         byte[][] certificateChain = new byte[][]{{0}};
 
-        return WebPaymentIntentHelper.createPayIntent("com.maxlg.fakechrome", "com.maxlg.maxpay.MaxPayActivity",
+        return WebPaymentIntentHelper.createPayIntent(MAX_PAY_PACKAGE, "com.maxlg.maxpay.MaxPayActivity",
                 "pay_request_id_1411", "Linda's Bakery", "maxlgu.github.io",
                 "maxlgu.github.io", certificateChain, methodDataMap, total,
                 displayItems, modifiers);
