@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class ChromeActivity extends AppCompatActivity {
     // TODO: correct the package name after moving maxpay into another package.
     private static final String MAX_PAY_PACKAGE = "com.maxlg.fakechrome";
 

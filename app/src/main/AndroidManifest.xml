@@ -27,7 +27,7 @@
                 android:name="org.chromium.default_payment_method_name"
                 android:value="https://skilful-reserve-239412.appspot.com/static/max-payment-method" />
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".ChromeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
