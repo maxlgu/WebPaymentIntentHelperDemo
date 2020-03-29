@@ -61,19 +61,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Intent createIntent() {
-        Map<String, PaymentMethodData> methodDataMap = new HashMap<String, PaymentMethodData>();
+        Map<String, PaymentMethodData> methodDataMap = new HashMap<>();
         PaymentMethodData maxPayMethodData = new PaymentMethodData("maxPayMethod", "{}");
         methodDataMap.put("maxPay", maxPayMethodData);
 
         PaymentItem total = new PaymentItem(new PaymentCurrencyAmount("CAD", "50"));
 
-        List<PaymentItem> displayItems = new ArrayList<PaymentItem>();
+        List<PaymentItem> displayItems = new ArrayList<>();
         displayItems.add(new PaymentItem(new PaymentCurrencyAmount("CAD", "50")));
 
-        Map<String, PaymentDetailsModifier> modifiers = new HashMap<String,
-                PaymentDetailsModifier>();
-        PaymentDetailsModifier maxPaymodifier = new PaymentDetailsModifier(total, maxPayMethodData);
-        modifiers.put("maxPay", maxPaymodifier);
+        Map<String, PaymentDetailsModifier> modifiers = new HashMap<>();
+        PaymentDetailsModifier maxPayModifier = new PaymentDetailsModifier(total, maxPayMethodData);
+        modifiers.put("maxPay", maxPayModifier);
 
         byte[][] certificateChain = new byte[][]{{0}};
 
