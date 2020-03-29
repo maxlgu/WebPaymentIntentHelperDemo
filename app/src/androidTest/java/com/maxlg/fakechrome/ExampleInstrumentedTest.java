@@ -1,4 +1,4 @@
-package com.maxlg.intenthelperdemo;
+package com.maxlg.fakechrome;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.maxlg.intenthelperdemo", appContext.getPackageName());
+        assertEquals("com.maxlg.fakechrome", appContext.getPackageName());
     }
 }

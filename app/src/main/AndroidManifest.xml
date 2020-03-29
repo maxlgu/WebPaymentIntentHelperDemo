@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.maxlg.intenthelperdemo">
+    package="com.maxlg.fakechrome">
 
     <application
         android:allowBackup="true"
@@ -16,7 +16,7 @@
             <meta-data android:name="org.chromium.default_payment_method_name"
                 android:value="https://skilful-reserve-239412.appspot.com/static/max-payment-method" />
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.maxlg.fakechrome.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

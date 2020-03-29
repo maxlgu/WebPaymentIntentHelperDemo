@@ -5,17 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.maxlg.intenthelperdemo.R;
+import com.maxlg.fakechrome.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
 import java.util.Set;
 
 public class PaymentAppActivity extends AppCompatActivity {

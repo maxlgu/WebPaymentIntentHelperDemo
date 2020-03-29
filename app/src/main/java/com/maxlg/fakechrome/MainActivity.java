@@ -1,4 +1,4 @@
-package com.maxlg.intenthelperdemo;
+package com.maxlg.fakechrome;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         byte[][] certificateChain = new byte[][]{{0}};
 
-        return WebPaymentIntentHelper.createPayIntent("com.maxlg.intenthelperdemo", "com.maxlg.maxpay.PaymentAppActivity",
+        return WebPaymentIntentHelper.createPayIntent("com.maxlg.fakechrome", "com.maxlg.maxpay.PaymentAppActivity",
                 "pay_request_id_1411", "Linda's Bakery", "maxlgu.github.io",
                 "maxlgu.github.io", certificateChain, methodDataMap, total,
                 displayItems, modifiers);

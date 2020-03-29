@@ -1,4 +1,4 @@
-package com.maxlg.intenthelperdemo;
+package com.maxlg.fakechrome;
 
 import org.junit.Test;
 
