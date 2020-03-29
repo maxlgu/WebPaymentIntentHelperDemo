@@ -9,16 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.maxlg.maxpay.PaymentAppActivity">
+        <service
+            android:name="com.maxlg.maxpay.MaxPayIsReadyToPayService"
+            android:exported="false"></service>
+
+        <activity android:name="com.maxlg.maxpay.MaxPayActivity">
             <intent-filter>
                 <action android:name="org.chromium.intent.action.PAY" />
             </intent-filter>
-            <meta-data android:name="org.chromium.default_payment_method_name"
+
+            <meta-data
+                android:name="org.chromium.default_payment_method_name"
                 android:value="https://skilful-reserve-239412.appspot.com/static/max-payment-method" />
         </activity>
-        <activity android:name="com.maxlg.fakechrome.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

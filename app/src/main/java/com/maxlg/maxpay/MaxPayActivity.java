@@ -16,12 +16,12 @@ import org.json.JSONObject;
 
 import java.util.Set;
 
-public class PaymentAppActivity extends AppCompatActivity {
+public class MaxPayActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment_app);
+        setContentView(R.layout.activity_maxpay);
         Intent intent = getIntent();
 
         TextView descriptionView = findViewById(R.id.description);

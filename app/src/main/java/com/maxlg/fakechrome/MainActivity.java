@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_fakechrome);
 
         mDescriptionView = findViewById(R.id.description);
         mDescriptionView.setMovementMethod(new ScrollingMovementMethod());
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         byte[][] certificateChain = new byte[][]{{0}};
 
-        return WebPaymentIntentHelper.createPayIntent("com.maxlg.fakechrome", "com.maxlg.maxpay.PaymentAppActivity",
+        return WebPaymentIntentHelper.createPayIntent("com.maxlg.fakechrome", "com.maxlg.maxpay.MaxPayActivity",
                 "pay_request_id_1411", "Linda's Bakery", "maxlgu.github.io",
                 "maxlgu.github.io", certificateChain, methodDataMap, total,
                 displayItems, modifiers);
