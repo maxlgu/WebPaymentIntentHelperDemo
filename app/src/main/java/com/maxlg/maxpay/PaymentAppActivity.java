@@ -1,4 +1,4 @@
-package com.maxlg.intenthelperdemo;
+package com.maxlg.maxpay;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.text.format.DateFormat;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.maxlg.intenthelperdemo.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
